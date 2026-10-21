@@ -33,3 +33,4 @@ bin/
 sources.txt
 *.log
 Serve.class
+mobile/dist/

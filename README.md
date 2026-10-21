@@ -72,6 +72,11 @@ mobile\serve.bat
 直接把 `mobile/index.html` 拖进手机/电脑浏览器也能玩
 （文件方式不支持"添加到主屏幕"和离线缓存，其它功能都一样）。
 
+#### 方式三：打包成单文件发给朋友（推荐）
+
+双击 `mobile\build-single.bat`，生成 `mobile\dist\双色球模拟器.html`（约 65KB），
+**通过微信/QQ/邮件直接发给朋友，对方点开即玩**——零安装、零配置。
+
 ## 🕹️ 使用说明
 
 1. 点【机选一注】或【自选一注】买几注（每注 ¥2，初始余额 ¥100，破产了可以点【领零花钱】）
@@ -109,7 +114,9 @@ lottery-simulator/
     ├── js/app.js              #   UI + Canvas 摇奖机动画
     ├── manifest.json / sw.js  #   PWA 清单 / 离线缓存
     ├── Serve.java / serve.bat #   零依赖静态服务器 + 一键启动
-    └── test/core.test.js      #   核心逻辑测试（node mobile/test/core.test.js）
+    ├── build-single.js/bat    #   打包成单文件（发给朋友用）
+    ├── test/core.test.js      #   核心逻辑测试（node mobile/test/core.test.js）
+    └── dist/                  #   打包产物（单文件版，git 忽略）
 ```
 
 两个版本共用一套玩法与规则，动画同款：49 球翻滚搅拌 → 中奖球吸入出球口 → 掉入展示槽。
