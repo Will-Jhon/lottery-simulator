@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1428">
+  <meta name="description" content="本地双色球模拟器：机选/自选彩票，电视风格摇奖动画，看看能中多少">
+  <!-- iOS 主屏启动支持 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="双色球">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+  <title>双色球模拟器</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 顶部：标题 + 统计 -->
+    <header id="header">
+      <div class="header-top">
+        <div class="app-title">🎰 双色球模拟器</div>
+        <div class="header-actions">
+          <button id="btn-allowance" class="icon-btn" type="button" title="领零花钱">💰</button>
+          <button id="btn-clear" class="icon-btn" type="button" title="清空彩票">🗑</button>
+          <button id="btn-sound" class="icon-btn" type="button" title="音效开关">🔊</button>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="stat-value" id="stat-period">2026001</span><span class="stat-label">期号</span></div>
+        <div class="stat"><span class="stat-value" id="stat-balance">¥100</span><span class="stat-label">余额</span></div>
+        <div class="stat"><span class="stat-value" id="stat-spent">¥0</span><span class="stat-label">累计投入</span></div>
+        <div class="stat"><span class="stat-value" id="stat-won">¥0</span><span class="stat-label">累计奖金</span></div>
+        <div class="stat"><span class="stat-value up" id="stat-net">+¥0</span><span class="stat-label">净收益</span></div>
+        <div class="stat"><span class="stat-value" id="stat-best">¥0</span><span class="stat-label">最佳单期</span></div>
+      </div>
+    </header>
+
+    <!-- 添加到主屏幕提示 -->
+    <div id="pwa-tip" class="hidden">
+      <span>安装到主屏幕，像 App 一样使用</span>
+      <button id="pwa-tip-close" type="button">✕</button>
+    </div>
+
+    <!-- 摇奖机 -->
+    <main id="machine-area">
+      <canvas id="machine-canvas"></canvas>
+      <div id="toast" class="hidden"></div>
+    </main>
+
+    <div id="status">欢迎来到本地双色球模拟器，先买几注彩票吧</div>
+
+    <!-- 我的彩票 -->
+    <section id="ticket-section">
+      <div class="section-title">我的彩票 <span id="ticket-count">(0 注)</span></div>
+      <div id="ticket-list"></div>
+      <div id="ticket-empty">还没有彩票<br>点击下方按钮买几注</div>
+    </section>
+
+    <!-- 底部操作栏 -->
+    <footer id="action-bar">
+      <div class="btn-row">
+        <button id="btn-quick" class="btn btn-blue" type="button">机选一注</button>
+        <button id="btn-quick5" class="btn btn-blue-dark" type="button">机选五注</button>
+        <button id="btn-self" class="btn btn-teal" type="button">自选一注</button>
+      </div>
+      <button id="btn-draw" class="btn btn-red btn-draw" type="button">开 始 摇 奖</button>
+    </footer>
+
+    <!-- 自选弹层（底部抽屉） -->
+    <div id="pick-dialog" class="hidden">
+      <div class="dialog-content">
+        <div class="dialog-title">自选一注</div>
+        <div class="pick-group">
+          <div class="pick-label">红球 1 - 33（选 6 个）</div>
+          <div class="pick-grid" id="red-grid"></div>
+        </div>
+        <div class="pick-group">
+          <div class="pick-label">蓝球 1 - 16（选 1 个）</div>
+          <div class="pick-grid pick-grid-blue" id="blue-grid"></div>
+        </div>
+        <div class="pick-hint" id="pick-hint">已选：红球 0 / 6</div>
+        <div class="dialog-buttons">
+          <button id="btn-pick-random" class="btn btn-blue" type="button">机选填充</button>
+          <button id="btn-pick-clear" class="btn btn-gray" type="button">清空</button>
+          <button id="btn-pick-cancel" class="btn btn-gray" type="button">取消</button>
+          <button id="btn-pick-ok" class="btn btn-green" type="button">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/lottery-core.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
